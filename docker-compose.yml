@@ -18,6 +18,7 @@ services:
       - ELASTIC_URL=http://elasticsearch:9200
       - MAIL_URL
       - METEOR_SETTINGS
+      - VISUALTEAMS_KEY
     labels:
       - 'traefik.enable=true'
       - 'traefik.http.middlewares.sslheader.headers.customrequestheaders.X-Forwarded-Proto = https'
