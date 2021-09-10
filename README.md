@@ -12,7 +12,9 @@
 - Debian (9/10)
 
 Installation of VisualTeams on other operating system may be possible but not supported. 
-VisualTeams is developed for Linux-based operating systems. It does **not** run on Microsoft Windows, and we have no plans to support it in the near future.
+VisualTeams is developed for Linux-based operating systems. 
+It does **not** run on Microsoft Windows, and we have no plans to support it in the near future.
+It does **not** run on ARM architecture, and we have no plans to support it in the near future.
 
 ### Software requirements
 
@@ -57,3 +59,7 @@ chmod +x configure-settings.sh && ./configure-settings.sh
 ```bash
 docker-compose up 
 ```
+
+## Upgrade
+
+
