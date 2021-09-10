@@ -61,9 +61,11 @@ chmod +x configure-settings.sh && ./configure-settings.sh
 
 4. Finally, start your VisualTeams Instance
 ```bash
-sudo docker-compose up 
+chmod +x run.sh && ./run.sh 
 ```
 
 ## Upgrade
+
+Soon…
 
 
