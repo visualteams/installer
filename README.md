@@ -22,6 +22,10 @@ It does **not** run on ARM architecture, and we have no plans to support it in t
 - Docker ([Installation](https://docs.docker.com/engine/install/))
 - Docker-compose ([Installation](https://docs.docker.com/compose/install/))
 
+#### Mails
+
+VisualTeams needs a fully functional mail server. You must provide a mail url (e.g. smtps://USERNAME:PASSWORD@HOST:PORT)
+
 #### Video conferencing
 If you plan to use video conferencing, you need a fully functional self-hosted Jitsi server :
 - Videoconferencing : Jitsi ([Installation](https://jitsi.github.io/handbook/docs/devops-guide/devops-guide-quickstart))
