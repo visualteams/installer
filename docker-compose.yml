@@ -21,7 +21,7 @@ services:
     labels:
       - 'traefik.enable=true'
       - 'traefik.http.middlewares.sslheader.headers.customrequestheaders.X-Forwarded-Proto = https'
-      - 'traefik.http.routers.visualteams.rule=Host(`${DOMAIN}`)'
+      - 'traefik.http.routers.visualteams.rule=Host(`${APP_DOMAIN}`)'
       - 'traefik.http.routers.visualteams.entrypoints=websecure'
       - 'traefik.http.routers.visualteams.tls.certresolver=myresolver'
 
@@ -60,7 +60,7 @@ services:
       - '--providers.docker.exposedbydefault=false'
       - '--entrypoints.websecure.address=:443'
       - '--certificatesresolvers.myresolver.acme.tlschallenge=true'
-      - "--certificatesresolvers.myresolver.acme.email=postmaster@${DOMAIN}"
+      - "--certificatesresolvers.myresolver.acme.email=postmaster@${APP_DOMAIN}"
       - '--certificatesresolvers.myresolver.acme.storage=/letsencrypt/acme.json'
     ports:
       - 443:443
