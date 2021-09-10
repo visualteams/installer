@@ -1,0 +1,39 @@
+{
+  "AWS": {
+    "accessKeyId": "#SCALITY_ACCESS_KEY_ID#",
+    "secretAccessKey": "#SCALITY_SECRET_ACCESS_KEY#",
+    "buckets": {
+      "replays": "#BUCKET_NAME_REPLAY#"
+    }
+  },
+  "jitsi": {
+    "username": "#JIBRI_USERNAME#",
+    "password": "#JIBRI_PASSWORD#",
+    "jwt": {
+      "app_id": "#JITSI_APP_ID#",
+      "secret": "#JITSI_SECRET_JWT#"
+    }
+  },
+  "elastic": {
+    "username": "#ELASTIC_USERNAME#",
+    "password": "#ELASTIC_PASSWORD#"
+  },
+  "etherpad": {
+    "apiKey": "#ETHERPAD_PASSWORD#"
+  },
+  "beeplugin": {
+    "client_id": "#BEEPLUGIN_CLIENT_ID#",
+    "client_secret": "#BEEPLUGIN_CLIENT_SECRET#"
+  },
+  "public": {
+    "jitsi": {
+      "domain": "#JITSI_DOMAIN#"
+    },
+    "etherpad": {
+      "domain": "#ETHERPAD_DOMAIN#"
+    },
+    "publicVapidKey": "#PUBLIC_VAPID_KEY#"
+  },
+  "privateVapidKey": "PRIVATE_VAPID_KEY",
+  "mail": "#MAIL_SENDER#"
+}

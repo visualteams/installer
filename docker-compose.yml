@@ -1,0 +1,106 @@
+version: '3'
+
+services:
+  app:
+    image: techexmachina/visualteams:latest
+    restart: unless-stopped
+    depends_on:
+      - database
+    ports:
+      - '3000:3000'
+    volumes:
+      - /visualteams/data/plugins:/opt/bundle/plugins
+    environment:
+      - PORT=3000
+      - ROOT_URL="https://${APP_DOMAIN}"
+      - MONGO_URL=mongodb://database:27017/visualteams
+      - MONGO_URL_OPLOG=mongodb://database:27017/local
+      - ELASTIC_URL=http://elasticsearch:9200
+      - MAIL_URL
+      - METEOR_SETTINGS
+    labels:
+      - 'traefik.enable=true'
+      - 'traefik.http.middlewares.sslheader.headers.customrequestheaders.X-Forwarded-Proto = https'
+      - 'traefik.http.routers.visualteams.rule=Host(`${DOMAIN}`)'
+      - 'traefik.http.routers.visualteams.entrypoints=websecure'
+      - 'traefik.http.routers.visualteams.tls.certresolver=myresolver'
+
+  database:
+    image: mongo:4.2.8
+    restart: unless-stopped
+    volumes:
+      - /visualteams/data/mongodb:/data/db
+    ports:
+      - '127.0.0.1:27017:27017'
+    command: --oplogSize 128 --replSet rs0
+    labels:
+      - 'traefik.enable=false'
+
+  mongo-init-replica:
+    image: mongo:4.0
+    command: >
+      bash -c
+        "for i in `seq 1 30`; do
+          mongo database/visualteams --eval \"
+            rs.initiate({
+              _id: 'rs0',
+              members: [ { _id: 0, host: 'localhost:27017' } ]})\" &&
+          s=$$? && break || s=$$?;
+          echo \"Tried $$i times. Waiting 5 secs...\";
+          sleep 5;
+        done; (exit $$s)"
+    depends_on:
+      - database
+
+  traefik:
+    image: traefik:latest
+    restart: unless-stopped
+    command:
+      - '--providers.docker=true'
+      - '--providers.docker.exposedbydefault=false'
+      - '--entrypoints.websecure.address=:443'
+      - '--certificatesresolvers.myresolver.acme.tlschallenge=true'
+      - "--certificatesresolvers.myresolver.acme.email=postmaster@${DOMAIN}"
+      - '--certificatesresolvers.myresolver.acme.storage=/letsencrypt/acme.json'
+    ports:
+      - 443:443
+    volumes:
+      - './letsencrypt:/letsencrypt'
+      - /var/run/docker.sock:/var/run/docker.sock
+      -
+  elasticsearch:
+    image: docker.elastic.co/elasticsearch/elasticsearch:7.10.1
+    environment:
+      - node.name=es01
+      - discovery.type=single-node
+      - bootstrap.memory_lock=true
+      - 'ES_JAVA_OPTS=-Xms128m -Xmx128m'
+      - TAKE_FILE_OWNERSHIP=true
+    ulimits:
+      memlock:
+        soft: -1
+        hard: -1
+    volumes:
+      - /visualteams/data/elasticsearch:/usr/share/elasticsearch/data
+    ports:
+      - 9200:9200
+
+  storage:
+    image: zenko/cloudserver:latest
+    environment:
+      - SCALITY_ACCESS_KEY_ID
+      - SCALITY_SECRET_ACCESS_KEY
+      - S3BACKEND=file
+      - REMOTE_MANAGEMENT_DISABLE=1
+    volumes:
+      - /visualteams/storage/data:/usr/src/app/localData
+      - /visualteams/storage/metadata:/usr/src/app/localMetadata
+    ports:
+      - 8000:8000
+
+  watchtower:
+    image: containrrr/watchtower
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      - /root/.docker/config.json:/config.json
+    command: --interval 30
