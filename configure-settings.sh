@@ -1,5 +1,10 @@
 #!/bin/bash
 
+if [ ! -f .env ]
+then
+  export $(cat .env | xargs)
+fi
+
 cp settings.json.template settings.json
 
 SETTINGS_FILE="settings.json"
