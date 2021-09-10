@@ -1,8 +1,7 @@
 #!/bin/bash
 
-if [ ! -f .env ]
-then
-  export $(cat .env | xargs)
+if [ -f .env ]; then
+  export $(echo $(cat .env | sed 's/#.*//g'| xargs) | envsubst)
 fi
 
 cp settings.json.template settings.json
