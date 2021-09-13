@@ -1,3 +1,3 @@
 export METEOR_SETTINGS=$(cat settings.json)
 
-docker-compose up
+sudo docker-compose up -d && echo "VisualTeams started"
