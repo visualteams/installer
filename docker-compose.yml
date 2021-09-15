@@ -94,6 +94,7 @@ services:
       - SCALITY_SECRET_ACCESS_KEY
       - S3BACKEND=file
       - REMOTE_MANAGEMENT_DISABLE=1
+      - ENDPOINT=storage
     volumes:
       - /visualteams/storage/data:/usr/src/app/localData
       - /visualteams/storage/metadata:/usr/src/app/localMetadata
