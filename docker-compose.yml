@@ -16,6 +16,7 @@ services:
       - MONGO_URL=mongodb://database:27017/visualteams
       - MONGO_URL_OPLOG=mongodb://database:27017/local
       - ELASTIC_URL=http://elasticsearch:9200
+      - STORAGE_URL=http://storage:8000
       - MAIL_URL
       - METEOR_SETTINGS
       - VISUALTEAMS_KEY
