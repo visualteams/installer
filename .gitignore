@@ -1,3 +1,5 @@
 .env
 settings.json
+settings.json.generated
+settings.json.override
 .idea
