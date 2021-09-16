@@ -2,6 +2,7 @@
   "AWS": {
     "accessKeyId": "#SCALITY_ACCESS_KEY_ID#",
     "secretAccessKey": "#SCALITY_SECRET_ACCESS_KEY#",
+    "region": "#BUCKET_REGION#",
     "buckets": {
       "replays": "#BUCKET_NAME_REPLAY#"
     }
