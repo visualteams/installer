@@ -13,10 +13,10 @@ services:
     environment:
       - PORT=3000
       - ROOT_URL=https://${APP_DOMAIN}
-      - MONGO_URL=${MONGO_URL:-"mongodb://database:27017/visualteams"}
-      - MONGO_URL_OPLOG=${MONGO_URL_OPLOG:-"mongodb://database:27017/local"}
-      - ELASTIC_URL=${ELASTIC_URL:-"http://elasticsearch:9200"}
-      - STORAGE_URL=${STORAGE_URL:-"http://storage:8000"}
+      - MONGO_URL=${MONGO_URL:-mongodb://database:27017/visualteams}
+      - MONGO_URL_OPLOG=${MONGO_URL_OPLOG:-mongodb://database:27017/local}
+      - ELASTIC_URL=${ELASTIC_URL:-http://elasticsearch:9200}
+      - STORAGE_URL=${STORAGE_URL:-http://storage:8000}
       - MAIL_URL
       - METEOR_SETTINGS
       - VISUALTEAMS_KEY
