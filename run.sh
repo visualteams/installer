@@ -9,4 +9,5 @@ chmod 777 configure-settings.sh
 
 export METEOR_SETTINGS=$(cat settings.json)
 
+docker-compose down
 docker-compose up
