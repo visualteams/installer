@@ -33,6 +33,7 @@ sed -i "s/#MAIL_SENDER#/${MAIL_SENDER:-""}/g" $SETTINGS_FILE
 
 sed -i "s/#PUBLIC_VAPID_KEY#/${PUBLIC_VAPID_KEY:-""}/g" $SETTINGS_FILE
 sed -i "s/#PRIVATE_VAPID_KEY#/${PRIVATE_VAPID_KEY:-""}/g" $SETTINGS_FILE
+sed -i "s/#FIREBASE_KEY#/${FIREBASE_KEY:-""}/g" $SETTINGS_FILE
 
 jq -s '.[0] * .[1]' $SETTINGS_FILE settings.json.override > settings.json
 

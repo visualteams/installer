@@ -36,5 +36,6 @@
     "publicVapidKey": "#PUBLIC_VAPID_KEY#"
   },
   "privateVapidKey": "#PRIVATE_VAPID_KEY#",
-  "mail": "#MAIL_SENDER#"
+  "mail": "#MAIL_SENDER#",
+  "firebaseKeyServer": "#FIREBASE_KEY#"
 }
