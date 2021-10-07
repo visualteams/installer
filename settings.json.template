@@ -33,7 +33,8 @@
     "etherpad": {
       "domain": "#ETHERPAD_DOMAIN#"
     },
-    "publicVapidKey": "#PUBLIC_VAPID_KEY#"
+    "publicVapidKey": "#PUBLIC_VAPID_KEY#",
+    "gtmId": "#GOOGLE_TAG_MANAGER_ID#"
   },
   "privateVapidKey": "#PRIVATE_VAPID_KEY#",
   "mail": "#MAIL_SENDER#",
