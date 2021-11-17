@@ -72,6 +72,7 @@ services:
 
   elasticsearch:
     image: docker.elastic.co/elasticsearch/elasticsearch:7.10.1
+    restart: unless-stopped
     environment:
       - node.name=es01
       - discovery.type=single-node
@@ -89,6 +90,7 @@ services:
 
   storage:
     image: zenko/cloudserver:latest
+    restart: unless-stopped
     environment:
       - SCALITY_ACCESS_KEY_ID
       - SCALITY_SECRET_ACCESS_KEY
@@ -103,6 +105,7 @@ services:
 
   watchtower:
     image: containrrr/watchtower
+    restart: unless-stopped
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
     command: --interval 60
