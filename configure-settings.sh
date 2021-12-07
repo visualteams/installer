@@ -38,6 +38,8 @@ sed -i "s/#GOOGLE_TAG_MANAGER_ID#/${GOOGLE_TAG_MANAGER_ID:-""}/g" $SETTINGS_FILE
 
 if test -f settings.json.override; then
   jq -s '.[0] * .[1]' $SETTINGS_FILE settings.json.override > settings.json
+else
+  cp $SETTINGS_FILE settings.json
 fi
 
 echo "Settings successfully generated"
