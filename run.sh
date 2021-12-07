@@ -15,4 +15,9 @@ chmod 777 configure-settings.sh
 export METEOR_SETTINGS=$(cat settings.json)
 
 docker-compose down
-docker-compose up
+
+if test -f docker-compose.override.yml; then
+  docker-compose -f docker-compose.yml -f docker-compose.override.yml up
+else
+  docker-compose up
+fi
