@@ -36,6 +36,8 @@ sed -i "s/#PRIVATE_VAPID_KEY#/${PRIVATE_VAPID_KEY:-""}/g" $SETTINGS_FILE
 sed -i "s/#FIREBASE_KEY#/${FIREBASE_KEY:-""}/g" $SETTINGS_FILE
 sed -i "s/#GOOGLE_TAG_MANAGER_ID#/${GOOGLE_TAG_MANAGER_ID:-""}/g" $SETTINGS_FILE
 
-jq -s '.[0] * .[1]' $SETTINGS_FILE settings.json.override > settings.json
+if test -f settings.json.override; then
+  jq -s '.[0] * .[1]' $SETTINGS_FILE settings.json.override > settings.json
+fi
 
 echo "Settings successfully generated"

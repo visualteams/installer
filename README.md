@@ -22,7 +22,7 @@ It does **not** run on ARM architecture, and we have no plans to support it in t
 - Docker ([Installation](https://docs.docker.com/engine/install/))
 - Docker-compose ([Installation](https://docs.docker.com/compose/install/))
 
-Install theses dependencies from your package manager :
+Install these dependencies from your package manager :
 
 ```bash
 apt install git jq
