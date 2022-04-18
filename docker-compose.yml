@@ -34,25 +34,9 @@ services:
       - /visualteams/data/mongodb:/data/db
     ports:
       - '127.0.0.1:27017:27017'
-    command: --oplogSize 128 --replSet rs0
+    command: --oplogSize 128
     labels:
       - 'traefik.enable=false'
-
-  mongo-init-replica:
-    image: mongo:4.0
-    command: >
-      bash -c
-        "for i in `seq 1 30`; do
-          mongo database/visualteams --eval \"
-            rs.initiate({
-              _id: 'rs0',
-              members: [ { _id: 0, host: 'localhost:27017' } ]})\" &&
-          s=$$? && break || s=$$?;
-          echo \"Tried $$i times. Waiting 5 secs...\";
-          sleep 5;
-        done; (exit $$s)"
-    depends_on:
-      - database
 
   traefik:
     image: traefik:latest
