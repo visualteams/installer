@@ -1,3 +1,5 @@
+#!/bin/bash
+
 if ((EUID != 0)); then
     echo "Error: Root or Sudo is required for this script ( $(basename $0) )"
     exit
